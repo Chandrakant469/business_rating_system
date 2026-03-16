@@ -107,14 +107,16 @@ $(document).ready(function () {
                 $("#addModal").modal("hide");
                 $("#addForm")[0].reset();
                 toastr.success("Business added successfully");
-                $('.rating').raty({
+                $(".rating").raty({
                     readOnly: true,
                     half: true,
                     score: function () {
                         return $(this).attr("data-score");
-                    }
+                    },
+                    starOn: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-on.png',
+                    starOff: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-off.png',
+                    starHalf: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-half.png'
                 });
-
             }
 
         });
@@ -246,6 +248,8 @@ $("#editForm").submit(function (e) {
 });
 // update modal script end 
 
+
+
 // delete script start 
 $(document).on("click", ".delete", function () {
     let id = $(this).data("id");
@@ -286,6 +290,12 @@ $(document).on("click", ".delete", function () {
     });
 });
 // delete script end
+
+
+
+
+
+
 
 
 // rating script start 
@@ -368,11 +378,11 @@ $(document).ready(function () {
 
                 if (typeof res === "string") {
                     $("#businessTable").prepend(res);
-                    initTableRating();   // ⭐ new row stars initialize
+                    initTableRating();
                     return;
 
                 }
-                
+
                 if (res.status == "email_duplicate") {
                     $("#rating_email_error").text("Email already submitted rating");
                     return;
@@ -473,4 +483,4 @@ function validateRatingStars() {
     $("#rating_error").text("");
     return true;
 }
-// rating script end 
+// rating script end  
